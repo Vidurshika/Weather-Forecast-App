@@ -13,3 +13,5 @@ npm install react@18 react-dom@18
 ⦿ TO add axios=npm i axios -S and run npx json-server -p 3500 -w data/db.json to get an endpoint
 
 ⦿ Hooks-npm i react-icons
+
+⦿ https://medium.com/@harshanabatagalla/building-a-weather-forecast-app-with-react-and-openweathermap-api-acb57627118b = API information
