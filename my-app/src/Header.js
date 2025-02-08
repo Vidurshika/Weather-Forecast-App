@@ -1,9 +1,11 @@
 import React from 'react'
 
-const Header = () => {
+const Header = ({ city }) => {
   return (
-    <div>Header</div>
+    <div className='Header'>
+      {city ? `${city} Weather Forecast ` : 'Weather Forecast'}
+    </div>
   )
 }
 
-export default Header
+export default Header;

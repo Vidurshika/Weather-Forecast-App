@@ -1,6 +1,7 @@
 import './App.css';
 import Header from './Header';
-import Content from './Content';
+import CityName from './CityName';
+import CityWeather from './CityWeather';
 import Footer from './Footer';
 import axios from 'axios';
 import { useState,useEffect } from 'react';
@@ -30,28 +31,29 @@ function App() {
         console.log('Error fetching data:', err);
       }
     };
-
     fetchData();
-  }, [city]);
+  }, [city]);  /* re render for each City */
+
+  
 
   return (
     <div className="App">
 
-      <Header/>
-      <Content/>
-      {isLoading ? (
-        <div>Loading...</div>  // Show loading message while fetching data
-      ) : error ? (
-        <div>Error: {error}</div>  // Show error message if there's an error
-      ) : (
-        <div>
-          <h2>{weatherData?.name}</h2>
-          <p>Temperature: {weatherData?.main.temp}°C</p>
-          <p>Weather: {weatherData?.weather[0].description}</p>
-          <p>Humidity: {weatherData?.main.humidity}%</p>
-          <p>Wind Speed: {weatherData?.wind.speed} m/s</p>
-        </div>
-      )}
+      <Header
+       city={city}
+      />
+      <div className='Content'>
+        <CityName
+        city={city}
+        setCity={setCity}
+        />
+        <CityWeather
+        city={city}
+        weatherData={weatherData}
+        isLoading={isLoading}
+        error={error}
+        />
+      </div>
       <Footer/>
 
       
