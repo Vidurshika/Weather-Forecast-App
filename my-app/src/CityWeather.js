@@ -2,7 +2,16 @@ import React from 'react';
 import { FaSun, FaCloud, FaSnowflake, FaCloudRain } from 'react-icons/fa'; // Import weather icons
 
 const CityWeather = ({ weatherData, isLoading, error }) => {
-  if (!weatherData) return (!isLoading && !error) ? <p>No weather data available</p> : null;
+    if (!weatherData) return (!isLoading && error) ? <p style={{
+        color: 'red', 
+        fontSize: '25px', 
+        fontWeight: 'bold', 
+        textAlign: 'center', 
+        marginTop: '20px',
+        backgroundColor: 'rgba(255, 0, 0, 0.1)', 
+        padding: '10px',
+        borderRadius: '5px'
+    }}>City Not Found</p> : null;
 
   const temp = weatherData.main.temp;
   const weatherDescription = weatherData.weather[0].description;

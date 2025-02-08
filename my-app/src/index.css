@@ -134,16 +134,21 @@ code {
   color: white;
 }
 
-.tempValue{
+.tempValue {
   display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0px; /* Reduce space between elements */
+  flex-direction: column; /* Stack the icon and temp vertically */
+  align-items: center;    /* Center both the icon and temp horizontally */
+  margin-bottom: 20px;
 }
 
 .weather-icon {
-  font-size: 110px; /* Increase icon size */
-  margin: 10px 0;
+  margin-bottom: 0; /* Remove any space below the icon */
+  font-size: 110px;
+}
+
+.tempValue p {
+  margin-top: 0;    /* Remove margin at the top of the temperature */
+  margin-bottom: 0; /* Remove margin at the bottom of the temperature */
 }
 
 .hot {
@@ -162,3 +167,12 @@ code {
   color: #f2f5f5; /* Snowflake - Cyan */
 }
 
+.Description {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* Create two equal columns */
+  gap: 15px;  /* Add space between the items */
+}
+
+.Description p {
+  margin: 0;  /* Remove default margin from paragraphs */
+}

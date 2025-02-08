@@ -23,7 +23,14 @@ function App() {
         const response = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
         );
-        setWeatherData(response.data);  // Store weather data
+        if (response.data.cod === "404") {
+          // City not found
+          setError("City not found. Please check the name and try again.");
+          setWeatherData(null);
+        } else {
+          setWeatherData(response.data);  // Store weather data
+          setError(null); // Reset any previous error messages
+        }
         setIsLoading(false);  // End loading
       } catch (err) {
         setIsLoading(false);  // End loading even if there's an error
@@ -31,8 +38,12 @@ function App() {
         console.log('Error fetching data:', err);
       }
     };
-    fetchData();
-  }, [city]);  /* re render for each City */
+  
+    if (city) {
+      fetchData();
+    }
+  }, [city]);  // Dependency array
+   /* re render for each City */
 
   
 
