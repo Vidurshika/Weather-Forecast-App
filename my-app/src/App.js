@@ -9,7 +9,7 @@ import { useState,useEffect } from 'react';
 
 function App() {
 
-  const [city,setCity]=useState('');
+  const [city,setCity]=useState('London');
   const [weatherData,setWeatherData] =useState();
   const [isLoading, setIsLoading] = useState(true);  // Add isLoading state
   const [error, setError] = useState(null);  // Add error state
