@@ -10,6 +10,7 @@ import { useState,useEffect } from 'react';
 function App() {
 
   const [city,setCity]=useState('London');
+  const [searchedCity,setSearchedCity] =useState('');
   const [weatherData,setWeatherData] =useState();
   const [isLoading, setIsLoading] = useState(true);  // Add isLoading state
   const [error, setError] = useState(null);  // Add error state
@@ -17,32 +18,33 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true);  // Start loading
-      setError(null);  // Clear any previous errors
+      setIsLoading(true);
+      setError(null);
+  
       try {
         const response = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
         );
+  
         if (response.data.cod === "404") {
-          // City not found
           setError("City not found. Please check the name and try again.");
-          setWeatherData(null);
         } else {
-          setWeatherData(response.data);  // Store weather data
-          setError(null); // Reset any previous error messages
+          setWeatherData(response.data); // Update only when data is valid
+          setSearchedCity(city); // Update searched city only if the data is valid
         }
-        setIsLoading(false);  // End loading
       } catch (err) {
-        setIsLoading(false);  // End loading even if there's an error
-        setError(err.message);  // Set the error message
-        console.log('Error fetching data:', err);
+        setError(err.message);
+        console.log("Error fetching data:", err);
+      } finally {
+        setIsLoading(false);
       }
     };
   
     if (city) {
       fetchData();
     }
-  }, [city]);  // Dependency array
+  }, [city]);
+    // Dependency array
    /* re render for each City */
 
   
@@ -51,7 +53,8 @@ function App() {
     <div className="App">
 
       <Header
-       city={city}
+       searchedCity={searchedCity}
+       error={error}
       />
       <div className='Content'>
         <CityName
@@ -63,6 +66,7 @@ function App() {
         weatherData={weatherData}
         isLoading={isLoading}
         error={error}
+        setSearchedCity={setSearchedCity}
         />
       </div>
       <Footer/>

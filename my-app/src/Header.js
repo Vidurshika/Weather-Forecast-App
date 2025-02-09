@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
-const Header = ({ city }) => {
+const Header = ({ searchedCity, error }) => {
+  const [lastValidCity, setLastValidCity] = useState('');
+
+  useEffect(() => {
+    if (!error && searchedCity) {
+      setLastValidCity(searchedCity); // Update only when no error
+    }
+  }, [searchedCity, error]);
+
   return (
     <div className='Header'>
-      {city ? `${city} Weather Forecast ` : 'Weather Forecast'}
+      {!error && lastValidCity ? `${lastValidCity} Weather Forecast` : 'Weather Forecast'}
     </div>
-  )
-}
+  );
+};
 
 export default Header;
