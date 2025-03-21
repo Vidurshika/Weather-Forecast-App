@@ -8,6 +8,8 @@ npm install react@18 react-dom@18
 ⦿ 👐ctrl alt r to open snippets and search for rafce 
       and click it to get that default component code👐
 
+⦿ 👐 """before running- npm install is a MUST"""
+
 ⦿ 👐ctrl + D to select all same texts of selected texts👐
 
 ⦿ TO add axios=npm i axios -S and run npx json-server -p 3500 -w data/db.json to get an endpoint
